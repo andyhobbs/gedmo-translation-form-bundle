@@ -1,0 +1,68 @@
+{
+    "name": "a2lix/translation-form-bundle",
+    "type": "symfony-bundle",
+    "description": "Translate your doctrine objects easily with some helps",
+    "keywords": [
+        "symfony",
+        "doctrine2",
+        "i18n",
+        "internationalization",
+        "translation",
+        "translatable",
+        "form",
+        "gedmo",
+        "knplabs",
+        "prezent"
+    ],
+    "homepage": "https://github.com/a2lix/TranslationFormBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David ALLIX",
+            "homepage": "http://a2lix.fr"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/a2lix/TranslationFormBundle/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "symfony/config": "^3.4.30|^4.3|^5.0",
+        "symfony/dependency-injection": "^3.4.30|^4.3|^5.0",
+        "symfony/event-dispatcher": "^3.4.30|^4.3|^5.0",
+        "symfony/form": "^3.4.30|^4.3|^5.0",
+        "symfony/http-foundation": "^3.4.30|^4.3|^5.0",
+        "symfony/http-kernel": "^3.4.30|^4.3|^5.0",
+        "symfony/options-resolver": "^3.4.30|^4.3|^5.0"
+    },
+    "require-dev": {
+        "doctrine/common": "^2.3",
+        "doctrine/doctrine-bundle": "^1.0",
+        "doctrine/orm": "^2.4",
+        "gedmo/doctrine-extensions": "^2.4",
+        "knplabs/doctrine-behaviors": "^1.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7 || ^1.2",
+        "symfony/doctrine-bridge": "^2.3.5 || ^3.0 || ^4.0",
+        "symfony/phpunit-bridge": "^4.0",
+        "symfony/validator": "^2.3 || ^3.0 || ^4.0"
+    },
+    "suggest": {
+        "a2lix/i18n-doctrine-bundle": "For A2lix strategy",
+        "gedmo/doctrine-extensions": "For Gedmo strategy",
+        "knplabs/doctrine-behaviors": "For Knp strategy",
+        "prezent/doctrine-translatable-bundle": "For Prezent strategy"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "A2lix\\TranslationFormBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "prefer-stable": true
+}
