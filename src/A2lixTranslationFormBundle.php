@@ -1,14 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace A2lix\TranslationFormBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle,
-    Symfony\Component\DependencyInjection\ContainerBuilder,
-    A2lix\TranslationFormBundle\DependencyInjection\Compiler\TemplatingPass;
+use A2lix\TranslationFormBundle\DependencyInjection\Compiler\TemplatingPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-/**
- * @author David ALLIX
- */
 class A2lixTranslationFormBundle extends Bundle
 {
     public function build(ContainerBuilder $container)

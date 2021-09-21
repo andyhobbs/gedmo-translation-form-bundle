@@ -15,7 +15,7 @@ class GedmoTranslationMapper implements DataMapperInterface
      */
     public function mapDataToForms($data, $forms)
     {
-        if (null === $data || array() === $data) {
+        if (null === $data || [] === $data) {
             return;
         }
 

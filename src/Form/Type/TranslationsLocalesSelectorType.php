@@ -4,20 +4,14 @@ declare(strict_types=1);
 
 namespace A2lix\TranslationFormBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType,
-    Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- *
- *
- * @author David ALLIX
- */
 class TranslationsLocalesSelectorType extends AbstractType
 {
     private $locales;
 
     /**
-     *
      * @param array $locales
      */
     public function __construct($locales)
@@ -37,12 +31,12 @@ class TranslationsLocalesSelectorType extends AbstractType
         ]);
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return 'choice';
     }
 
-    public function getName()
+    public function getBlockPrefix(): string
     {
         return 'a2lix_translationsLocalesSelector';
     }

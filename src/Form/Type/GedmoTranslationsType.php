@@ -75,10 +75,10 @@ class GedmoTranslationsType extends AbstractType
     {
         $translatableListener = $this->translationForm->getGedmoTranslatableListener();
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'required' => $this->required,
             'locales' => $this->locales,
-            'fields' => array(),
+            'fields' => [],
             'translatable_class' => null,
 
             // inherit_data is needed only if there is no persist of default locale and default locale is required to display
@@ -86,10 +86,10 @@ class GedmoTranslationsType extends AbstractType
                 return (!$translatableListener->getPersistDefaultLocaleTranslation()
                     && (in_array($translatableListener->getDefaultLocale(), $options['locales'])));
             },
-        ));
+        ]);
     }
 
-    public function getName()
+    public function getBlockPrefix(): string
     {
         return 'a2lix_translations_gedmo';
     }

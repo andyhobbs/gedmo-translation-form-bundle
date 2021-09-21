@@ -7,7 +7,6 @@ namespace A2lix\TranslationFormBundle\TranslationForm;
 class DefaultTranslationForm extends TranslationForm
 {
     /**
-     *
      * @param string $translationClass
      *
      * @return array

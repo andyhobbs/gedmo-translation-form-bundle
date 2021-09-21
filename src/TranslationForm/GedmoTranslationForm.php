@@ -15,7 +15,6 @@ class GedmoTranslationForm extends TranslationForm
     private $gedmoConfig;
 
     /**
-     *
      * @return \Gedmo\Translatable\TranslatableListener
      */
     public function getGedmoTranslatableListener(): \Gedmo\Translatable\TranslatableListener
@@ -24,7 +23,6 @@ class GedmoTranslationForm extends TranslationForm
     }
 
     /**
-     *
      * @param \Gedmo\Translatable\TranslatableListener $gedmoTranslatableListener
      */
     public function setGedmoTranslatableListener(TranslatableListener $gedmoTranslatableListener)
@@ -51,11 +49,14 @@ class GedmoTranslationForm extends TranslationForm
     }
 
     /**
-     * {@inheritdoc}
+     * @param $translatableClass
+     *
+     * @return array
      */
-    public function getTranslationClass($translatableClass)
+    public function getTranslationClass($translatableClass): array
     {
         $gedmoConfig = $this->getGedmoConfig($translatableClass);
+
         return $gedmoConfig['translationClass'];
     }
 
