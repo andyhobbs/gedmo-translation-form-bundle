@@ -34,7 +34,7 @@ class A2lixTranslationFormExtension extends Extension
         $processor = new Processor();
         $config = $processor->processConfiguration(new Configuration(), $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
         $container->setParameter('a2lix_translation_form.locale_provider', $config['locale_provider']);
