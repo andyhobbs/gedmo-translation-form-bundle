@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace A2lix\TranslationFormBundle\TranslationForm;
 
-/**
- * @author David ALLIX
- */
 class DefaultTranslationForm extends TranslationForm
 {
     /**

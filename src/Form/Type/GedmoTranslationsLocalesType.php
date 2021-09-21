@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace A2lix\TranslationFormBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilderInterface,
-    Symfony\Component\OptionsResolver\OptionsResolverInterface,
-    A2lix\TranslationFormBundle\Form\DataMapper\GedmoTranslationMapper;
+use A2lix\TranslationFormBundle\Form\DataMapper\GedmoTranslationMapper;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Translations locales (gedmo)
- *
- * @author David ALLIX
- */
 class GedmoTranslationsLocalesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -27,22 +22,22 @@ class GedmoTranslationsLocalesType extends AbstractType
 
         foreach ($options['locales'] as $locale) {
             if (isset($options['fields_options'][$locale])) {
-                $builder->add($locale, 'a2lix_translationsFields', array(
+                $builder->add($locale, TranslationsFieldsType::class, [
                     'fields' => $options['fields_options'][$locale],
                     'translation_class' => $options['translation_class'],
                     'inherit_data' => $isDefaultTranslation,
-                ));
+                ]);
             }
         }
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'locales' => array(),
-            'fields_options' => array(),
+        $resolver->setDefaults([
+            'locales' => [],
+            'fields_options' => [],
             'translation_class' => null
-        ));
+        ]);
     }
 
     public function getName()

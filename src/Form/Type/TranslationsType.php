@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace A2lix\TranslationFormBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilderInterface,
-    Symfony\Component\OptionsResolver\OptionsResolverInterface,
+    Symfony\Component\OptionsResolver\OptionsResolver,
     A2lix\TranslationFormBundle\Form\EventListener\DefaultTranslationsListener,
     A2lix\TranslationFormBundle\Form\DataMapper\IndexByTranslationMapper;
 
@@ -22,8 +24,8 @@ class TranslationsType extends AbstractType
     /**
      *
      * @param \A2lix\TranslationFormBundle\Form\EventListener\DefaultTranslationsListener $translationsListener
-     * @param type $locales
-     * @param type $required
+     * @param array $locales
+     * @param bool $required
      */
     public function __construct(DefaultTranslationsListener $translationsListener, $locales, $required)
     {
@@ -38,7 +40,7 @@ class TranslationsType extends AbstractType
         $builder->addEventSubscriber($this->translationsListener);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'by_reference' => false,

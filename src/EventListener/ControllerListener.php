@@ -7,7 +7,7 @@ namespace A2lix\TranslationFormBundle\EventListener;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Util\ClassUtils;
 use Gedmo\Translatable\TranslatableListener;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 class ControllerListener
 {
@@ -20,17 +20,8 @@ class ControllerListener
         $this->translatableListener = $translatableListener;
     }
 
-    public function onKernelController(FilterControllerEvent $event)
+    public function onKernelController(ControllerEvent $event)
     {
-        $controller = $event->getController();
-        list($object, $method) = $controller;
 
-        $className = ClassUtils::getClass($object);
-        $reflectionClass = new \ReflectionClass($className);
-        $reflectionMethod = $reflectionClass->getMethod($method);
-
-        if ($this->annotationReader->getMethodAnnotation($reflectionMethod, 'A2lix\TranslationFormBundle\Annotation\GedmoTranslation')) {
-            $this->translatableListener->setTranslatableLocale($this->translatableListener->getDefaultLocale());
-        }
     }
 }

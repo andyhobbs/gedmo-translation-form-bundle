@@ -1,24 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace A2lix\TranslationFormBundle\TranslationForm;
 
-use Symfony\Component\Form\FormRegistry,
-    Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Registry;
+use Symfony\Component\Form\FormRegistry;
 
-/**
- * @author David ALLIX
- */
 abstract class TranslationForm implements TranslationFormInterface
 {
     private $typeGuesser;
     private $managerRegistry;
 
     /**
-     *
-     * @param \Symfony\Component\Form\FormRegistry $formRegistry
-     * @param \Doctrine\Common\Persistence\ManagerRegistry $managerRegistry
+     * @param \Symfony\Component\Form\FormRegistry     $formRegistry
+     * @param \Doctrine\Bundle\DoctrineBundle\Registry $managerRegistry
      */
-    public function __construct(FormRegistry $formRegistry, ManagerRegistry $managerRegistry)
+    public function __construct(FormRegistry $formRegistry, Registry $managerRegistry)
     {
         $this->typeGuesser = $formRegistry->getTypeGuesser();
         $this->managerRegistry = $managerRegistry;
@@ -26,9 +24,9 @@ abstract class TranslationForm implements TranslationFormInterface
 
     /**
      *
-     * @return type
+     * @return \Doctrine\Bundle\DoctrineBundle\Registry
      */
-    public function getManagerRegistry()
+    public function getManagerRegistry(): \Doctrine\Bundle\DoctrineBundle\Registry
     {
         return $this->managerRegistry;
     }
@@ -36,7 +34,7 @@ abstract class TranslationForm implements TranslationFormInterface
     /**
      * {@inheritdoc}
      */
-    public function getChildrenOptions($class, $options)
+    public function getChildrenOptions($class, $options): array
     {
         $childrenOptions = array();
 
@@ -46,7 +44,7 @@ abstract class TranslationForm implements TranslationFormInterface
 
         // Custom options by field
         foreach (array_unique(array_merge(array_keys($options['fields']), $this->getTranslatableFields($class))) as $child) {
-            $childOptions = (isset($options['fields'][$child]) ? $options['fields'][$child] : array()) + array('required' => $options['required']);
+            $childOptions = ($options['fields'][$child] ?? []) + array('required' => $options['required']);
 
             if (!isset($childOptions['display']) || $childOptions['display']) {
                 $childOptions = $this->guessMissingChildOptions($this->typeGuesser, $class, $child, $childOptions);
@@ -57,7 +55,7 @@ abstract class TranslationForm implements TranslationFormInterface
                     unset($childOptions['locale_options']);
 
                     foreach ($options['locales'] as $locale) {
-                        $localeChildOptions = isset($localesChildOptions[$locale]) ? $localesChildOptions[$locale] : array();
+                        $localeChildOptions = $localesChildOptions[$locale] ?? [];
                         if (!isset($localeChildOptions['display']) || $localeChildOptions['display']) {
                             $childrenOptions[$locale][$child] = $localeChildOptions + $childOptions;
                         }
@@ -84,12 +82,12 @@ abstract class TranslationForm implements TranslationFormInterface
             $options['field_type'] = $typeGuess->getType();
         }
 
-        if (!isset($options['pattern']) && ($patternGuess = $guesser->guessPattern($class, $property))) {
-            $options['pattern'] = $patternGuess->getValue();
+        if (!isset($options['attr']['pattern']) && ($patternGuess = $guesser->guessPattern($class, $property))) {
+            $options['attr']['pattern'] = $patternGuess->getValue();
         }
 
-        if (!isset($options['max_length']) && ($maxLengthGuess = $guesser->guessMaxLength($class, $property))) {
-            $options['max_length'] = $maxLengthGuess->getValue();
+        if (!isset($options['attr']['max_length']) && ($maxLengthGuess = $guesser->guessMaxLength($class, $property))) {
+            $options['attr']['max_length'] = $maxLengthGuess->getValue();
         }
 
         return $options;

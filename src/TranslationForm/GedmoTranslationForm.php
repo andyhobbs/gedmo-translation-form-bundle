@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace A2lix\TranslationFormBundle\TranslationForm;
 
 use Gedmo\Translatable\TranslatableListener;
@@ -14,9 +16,9 @@ class GedmoTranslationForm extends TranslationForm
 
     /**
      *
-     * @return type
+     * @return \Gedmo\Translatable\TranslatableListener
      */
-    public function getGedmoTranslatableListener()
+    public function getGedmoTranslatableListener(): \Gedmo\Translatable\TranslatableListener
     {
         return $this->gedmoTranslatableListener;
     }
@@ -31,11 +33,11 @@ class GedmoTranslationForm extends TranslationForm
     }
 
     /**
+     * @param string $translatableClass
      *
-     * @param type $translatableClass
-     * @return type
+     * @return array
      */
-    private function getGedmoConfig($translatableClass)
+    private function getGedmoConfig($translatableClass): array
     {
         if (isset($this->gedmoConfig[$translatableClass])) {
             return $this->gedmoConfig[$translatableClass];
@@ -58,13 +60,14 @@ class GedmoTranslationForm extends TranslationForm
     }
 
     /**
+     * @param string $translatableClass
      *
-     * @param type $translatableClass
-     * @return type
+     * @return array
      */
     protected function getTranslatableFields($translatableClass)
     {
         $gedmoConfig = $this->getGedmoConfig($translatableClass);
-        return isset($gedmoConfig['fields']) ? $gedmoConfig['fields'] : array();
+
+        return $gedmoConfig['fields'] ?? [];
     }
 }

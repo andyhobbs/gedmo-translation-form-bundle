@@ -4,21 +4,16 @@ declare(strict_types=1);
 
 namespace A2lix\TranslationFormBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilderInterface,
-    Symfony\Component\OptionsResolver\OptionsResolverInterface,
-    A2lix\TranslationFormBundle\Form\EventListener\GedmoTranslationsListener,
-    A2lix\TranslationFormBundle\TranslationForm\GedmoTranslationForm,
-    A2lix\TranslationFormBundle\Form\DataMapper\GedmoTranslationMapper,
-    Symfony\Component\Form\FormView,
-    Symfony\Component\Form\FormInterface,
-    Symfony\Component\OptionsResolver\Options;
+use A2lix\TranslationFormBundle\Form\DataMapper\GedmoTranslationMapper;
+use A2lix\TranslationFormBundle\Form\EventListener\GedmoTranslationsListener;
+use A2lix\TranslationFormBundle\TranslationForm\GedmoTranslationForm;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Regroup by locales, all translations fields (gedmo)
- *
- * @author David ALLIX
- */
 class GedmoTranslationsType extends AbstractType
 {
     private $translationsListener;
@@ -30,8 +25,8 @@ class GedmoTranslationsType extends AbstractType
      *
      * @param \A2lix\TranslationFormBundle\Form\EventListener\GedmoTranslationsListener $translationsListener
      * @param \A2lix\TranslationFormBundle\TranslationForm\GedmoTranslationForm $translationForm
-     * @param type $locales
-     * @param type $required
+     * @param array $locales
+     * @param bool $required
      */
     public function __construct(GedmoTranslationsListener $translationsListener, GedmoTranslationForm $translationForm, $locales, $required)
     {
@@ -56,18 +51,18 @@ class GedmoTranslationsType extends AbstractType
             $childrenOptions = $this->translationForm->getChildrenOptions($options['translatable_class'], $options);
             $defaultLocale = (array) $this->translationForm->getGedmoTranslatableListener()->getDefaultLocale();
 
-            $builder->add('defaultLocale', 'a2lix_translationsLocales_gedmo', array(
+            $builder->add('defaultLocale', GedmoTranslationsLocalesType::class, [
                 'locales' => $defaultLocale,
                 'fields_options' => $childrenOptions,
                 'inherit_data' => true,
-            ));
+            ]);
 
-            $builder->add($builder->getName(), 'a2lix_translationsLocales_gedmo', array(
+            $builder->add($builder->getName(), GedmoTranslationsLocalesType::class, [
                 'locales' => array_diff($options['locales'], $defaultLocale),
                 'fields_options' => $childrenOptions,
                 'inherit_data' => false,
                 'translation_class' => $this->translationForm->getTranslationClass($options['translatable_class'])
-            ));
+            ]);
         }
     }
 
@@ -76,7 +71,7 @@ class GedmoTranslationsType extends AbstractType
         $view->vars['simple_way'] = !$options['inherit_data'];
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $translatableListener = $this->translationForm->getGedmoTranslatableListener();
 
