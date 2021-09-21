@@ -29,12 +29,14 @@ class TranslationsType extends AbstractType
         $this->required = $required;
     }
 
+    /** {@inheritdoc} */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->setDataMapper(new IndexByTranslationMapper());
         $builder->addEventSubscriber($this->translationsListener);
     }
 
+    /** {@inheritdoc} */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -45,6 +47,7 @@ class TranslationsType extends AbstractType
         ));
     }
 
+    /** {@inheritdoc} */
     public function getBlockPrefix(): string
     {
         return 'a2lix_translations';

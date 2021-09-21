@@ -35,7 +35,7 @@ class GedmoTranslationForm extends TranslationForm
      *
      * @return array
      */
-    private function getGedmoConfig($translatableClass): array
+    private function getGedmoConfig(string $translatableClass): array
     {
         if (isset($this->gedmoConfig[$translatableClass])) {
             return $this->gedmoConfig[$translatableClass];
@@ -51,9 +51,9 @@ class GedmoTranslationForm extends TranslationForm
     /**
      * @param $translatableClass
      *
-     * @return array
+     * @return string
      */
-    public function getTranslationClass($translatableClass): array
+    public function getTranslationClass($translatableClass): string
     {
         $gedmoConfig = $this->getGedmoConfig($translatableClass);
 
@@ -65,7 +65,7 @@ class GedmoTranslationForm extends TranslationForm
      *
      * @return array
      */
-    protected function getTranslatableFields($translatableClass)
+    protected function getTranslatableFields(string $translatableClass): array
     {
         $gedmoConfig = $this->getGedmoConfig($translatableClass);
 

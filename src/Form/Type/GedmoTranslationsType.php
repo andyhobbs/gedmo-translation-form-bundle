@@ -36,6 +36,7 @@ class GedmoTranslationsType extends AbstractType
         $this->required = $required;
     }
 
+    /** {@inheritdoc} */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Simple way is enough
@@ -66,11 +67,13 @@ class GedmoTranslationsType extends AbstractType
         }
     }
 
+    /** {@inheritdoc} */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['simple_way'] = !$options['inherit_data'];
     }
 
+    /** {@inheritdoc} */
     public function configureOptions(OptionsResolver $resolver)
     {
         $translatableListener = $this->translationForm->getGedmoTranslatableListener();
@@ -89,6 +92,7 @@ class GedmoTranslationsType extends AbstractType
         ]);
     }
 
+    /** {@inheritdoc} */
     public function getBlockPrefix(): string
     {
         return 'a2lix_translations_gedmo';

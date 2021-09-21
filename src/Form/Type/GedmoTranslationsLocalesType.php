@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GedmoTranslationsLocalesType extends AbstractType
 {
+    /** {@inheritdoc} */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $isDefaultTranslation = ('defaultLocale' === $builder->getName());
@@ -31,6 +32,7 @@ class GedmoTranslationsLocalesType extends AbstractType
         }
     }
 
+    /** {@inheritdoc} */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -40,7 +42,8 @@ class GedmoTranslationsLocalesType extends AbstractType
         ]);
     }
 
-    public function getName()
+    /** {@inheritdoc} */
+    public function getBlockPrefix(): string
     {
         return 'a2lix_translationsLocales_gedmo';
     }

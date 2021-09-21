@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace A2lix\TranslationFormBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilderInterface,
-    Symfony\Component\OptionsResolver\OptionsResolver,
-    A2lix\TranslationFormBundle\Form\DataMapper\IndexByTranslationMapper;
+use A2lix\TranslationFormBundle\Form\DataMapper\IndexByTranslationMapper;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- *
- *
- * @author David ALLIX
- */
 class TranslationsFormsType extends AbstractType
 {
     private $locales;
@@ -21,8 +16,8 @@ class TranslationsFormsType extends AbstractType
 
     /**
      *
-     * @param type $locales
-     * @param type $required
+     * @param array $locales
+     * @param bool $required
      */
     public function __construct($locales, $required)
     {
@@ -30,6 +25,7 @@ class TranslationsFormsType extends AbstractType
         $this->required = $required;
     }
 
+    /** {@inheritdoc} */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->setDataMapper(new IndexByTranslationMapper());
@@ -40,6 +36,7 @@ class TranslationsFormsType extends AbstractType
         }
     }
 
+    /** {@inheritdoc} */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -51,7 +48,8 @@ class TranslationsFormsType extends AbstractType
         ));
     }
 
-    public function getName()
+    /** {@inheritdoc} */
+    public function getBlockPrefix(): string
     {
         return 'a2lix_translationsForms';
     }

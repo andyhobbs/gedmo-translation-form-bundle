@@ -8,13 +8,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Translations fields
- *
- * @author David ALLIX
- */
 class TranslationsFieldsType extends AbstractType
 {
+    /** {@inheritdoc} */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         foreach ($options['fields'] as $fieldName => $fieldConfig) {
@@ -25,15 +21,17 @@ class TranslationsFieldsType extends AbstractType
         }
     }
 
+    /** {@inheritdoc} */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'fields' => array(),
+        $resolver->setDefaults([
+            'fields' => [],
             'translation_class' => null
-        ));
+        ]);
     }
 
-    public function getName()
+    /** {@inheritdoc} */
+    public function getBlockPrefix(): string
     {
         return 'a2lix_translationsFields';
     }
