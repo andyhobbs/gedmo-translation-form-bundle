@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace A2lix\TranslationFormBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-/**
- * @author David ALLIX
- */
 class A2lixTranslationFormExtension extends Extension
 {
     /**
