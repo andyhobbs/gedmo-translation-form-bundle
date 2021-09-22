@@ -10,9 +10,7 @@
         "translation",
         "translatable",
         "form",
-        "gedmo",
-        "knplabs",
-        "prezent"
+        "gedmo"
     ],
     "homepage": "https://github.com/andyhobbs/gedmo-translation-form-bundle",
     "license": "MIT",
@@ -34,7 +32,7 @@
     },
     "suggest": {
         "a2lix/i18n-doctrine-bundle": "For A2lix strategy",
-        "stof/doctrine-extensions-bundle": "For Gedmo strategy",
+        "stof/doctrine-extensions-bundle": "For Gedmo strategy"
     },
     "config": {
         "sort-packages": true
