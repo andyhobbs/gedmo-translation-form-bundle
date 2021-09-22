@@ -24,7 +24,7 @@ class GedmoTranslationMapper implements DataMapperInterface
         foreach ($forms as $translationsFieldsForm) {
             $locale = $translationsFieldsForm->getConfig()->getName();
 
-            $tmpFormData = array();
+            $tmpFormData = [];
             foreach ($data as $translation) {
                 if ($locale === $translation->getLocale()) {
                     $tmpFormData[$translation->getField()] = $translation->getContent();

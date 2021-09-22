@@ -28,9 +28,9 @@ class GedmoTranslationsListener implements EventSubscriberInterface
     /** {@inheritdoc} */
     public static function getSubscribedEvents(): array
     {
-        return array(
+        return [
             FormEvents::PRE_SET_DATA => 'preSetData',
-        );
+        ];
     }
 
     /**

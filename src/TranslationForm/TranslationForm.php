@@ -36,7 +36,7 @@ abstract class TranslationForm implements TranslationFormInterface
      */
     public function getChildrenOptions($class, $options): array
     {
-        $childrenOptions = array();
+        $childrenOptions = [];
 
         // Clean some options
         unset($options['inherit_data']);

@@ -29,7 +29,7 @@ class TranslationsFormsType extends AbstractType
     {
         $builder->setDataMapper(new IndexByTranslationMapper());
 
-        $formOptions = isset($options['form_options']) ? $options['form_options'] : array();
+        $formOptions = $options['form_options'] ?? [];
         foreach ($options['locales'] as $locale) {
             $builder->add($locale, $options['form_type'], $formOptions);
         }
@@ -38,13 +38,13 @@ class TranslationsFormsType extends AbstractType
     /** {@inheritdoc} */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'by_reference' => false,
             'required' => $this->required,
             'locales' => $this->locales,
             'form_type' => null,
             'form_options' => null,
-        ));
+        ]);
     }
 
     /** {@inheritdoc} */

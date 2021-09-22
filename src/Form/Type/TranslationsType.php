@@ -38,12 +38,12 @@ class TranslationsType extends AbstractType
     /** {@inheritdoc} */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'by_reference' => false,
             'required' => $this->required,
             'locales' => $this->locales,
-            'fields' => array(),
-        ));
+            'fields' => [],
+        ]);
     }
 
     /** {@inheritdoc} */
