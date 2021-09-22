@@ -46,11 +46,11 @@ class GedmoTranslationForm extends TranslationForm
     }
 
     /**
-     * @param $translatableClass
+     * @param string $translatableClass
      *
      * @return string
      */
-    public function getTranslationClass($translatableClass): string
+    public function getTranslationClass(string $translatableClass): string
     {
         $gedmoConfig = $this->getGedmoConfig($translatableClass);
 
