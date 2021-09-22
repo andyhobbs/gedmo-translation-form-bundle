@@ -9,6 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class TemplatingPass implements CompilerPassInterface
 {
+    /** {@inheritdoc} */
     public function process(ContainerBuilder $container): void
     {
         if (false !== ($template = $container->getParameter('a2lix_translation_form.templating'))) {

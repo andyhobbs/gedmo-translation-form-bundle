@@ -9,20 +9,18 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritdoc} */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('a2lix_translation_form');
-        $rootNode = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('a2lix_translation_form');
+        $rootNode = \method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('a2lix_translation_form');
 
         $rootNode
             ->children()
                 ->arrayNode('locales')
                     ->beforeNormalization()
                         ->ifString()
-                        ->then(function($v) { return preg_split('/\s*,\s*/', $v); })
+                        ->then(function($v) { return \preg_split('/\s*,\s*/', $v); })
                     ->end()
                     ->requiresAtLeastOneElement()
                     ->prototype('scalar')->end()

@@ -13,7 +13,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class A2lixTranslationFormExtension extends Extension
 {
     /**
-     *
      * @param array $configs
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
@@ -33,11 +32,6 @@ class A2lixTranslationFormExtension extends Extension
         // Enable gedmo?
         if ($container->hasParameter('stof_doctrine_extensions.default_locale')) {
             $loader->load('gedmo.xml');
-
-            // If persistDefaultTranslation enabled, detect GedmoTranslation annotations is useless
-            if ($container->getParameter('stof_doctrine_extensions.persist_default_translation')) {
-                $container->removeDefinition('a2lix_translation_form.listener.controller');
-            }
         }
     }
 }
