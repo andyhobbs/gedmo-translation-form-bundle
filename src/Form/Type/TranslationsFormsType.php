@@ -15,7 +15,6 @@ class TranslationsFormsType extends AbstractType
     private $required;
 
     /**
-     *
      * @param array $locales
      * @param bool $required
      */

@@ -11,15 +11,15 @@ class DefaultTranslationForm extends TranslationForm
      *
      * @return array
      */
-    protected function getTranslatableFields($translationClass)
+    protected function getTranslatableFields(string $translationClass): array
     {
         $translationClass = \Doctrine\Common\Util\ClassUtils::getRealClass($translationClass);
         $manager = $this->getManagerRegistry()->getManagerForClass($translationClass);
         $metadataClass = $manager->getMetadataFactory()->getMetadataFor($translationClass);
 
-        $fields = array();
+        $fields = [];
         foreach ($metadataClass->fieldMappings as $fieldMapping) {
-            if (!in_array($fieldMapping['fieldName'], array('id', 'locale'))) {
+            if (!in_array($fieldMapping['fieldName'], ['id', 'locale'])) {
                 $fields[] = $fieldMapping['fieldName'];
             }
         }

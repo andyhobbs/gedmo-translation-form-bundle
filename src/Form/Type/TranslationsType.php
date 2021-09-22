@@ -17,7 +17,6 @@ class TranslationsType extends AbstractType
     private $required;
 
     /**
-     *
      * @param \A2lix\TranslationFormBundle\Form\EventListener\DefaultTranslationsListener $translationsListener
      * @param array $locales
      * @param bool $required

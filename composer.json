@@ -35,7 +35,6 @@
     "suggest": {
         "a2lix/i18n-doctrine-bundle": "For A2lix strategy",
         "stof/doctrine-extensions-bundle": "For Gedmo strategy",
-        "knplabs/doctrine-behaviors": "For Knp strategy"
     },
     "config": {
         "sort-packages": true

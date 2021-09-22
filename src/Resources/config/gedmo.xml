@@ -5,8 +5,6 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="a2lix_translation_form.listener.controller.class">A2lix\TranslationFormBundle\EventListener\ControllerListener</parameter>
-
         <parameter key="a2lix_translation_form.gedmo.service.translation.class">A2lix\TranslationFormBundle\TranslationForm\GedmoTranslationForm</parameter>
         <parameter key="a2lix_translation_form.gedmo.listener.translations.class">A2lix\TranslationFormBundle\Form\EventListener\GedmoTranslationsListener</parameter>
         <parameter key="a2lix_translation_form.gedmo.type.translations.class">A2lix\TranslationFormBundle\Form\Type\GedmoTranslationsType</parameter>
@@ -14,12 +12,6 @@
     </parameters>
 
     <services>
-        <service id="a2lix_translation_form.listener.controller" class="%a2lix_translation_form.listener.controller.class%">
-            <argument type="service" id="annotation_reader" />
-            <argument type="service" id="stof_doctrine_extensions.listener.translatable" />
-            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
-        </service>
-
         <service id="a2lix_translation_form.gedmo.service.translation" class="%a2lix_translation_form.gedmo.service.translation.class%">
             <argument type="service" id="form.registry" />
             <argument type="service" id="a2lix_translation_form.manager_registry" />

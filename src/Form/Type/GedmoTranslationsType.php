@@ -22,7 +22,6 @@ class GedmoTranslationsType extends AbstractType
     private $required;
 
     /**
-     *
      * @param \A2lix\TranslationFormBundle\Form\EventListener\GedmoTranslationsListener $translationsListener
      * @param \A2lix\TranslationFormBundle\TranslationForm\GedmoTranslationForm $translationForm
      * @param array $locales

@@ -6,9 +6,6 @@ namespace A2lix\TranslationFormBundle\TranslationForm;
 
 use Gedmo\Translatable\TranslatableListener;
 
-/**
- * @author David ALLIX
- */
 class GedmoTranslationForm extends TranslationForm
 {
     private $gedmoTranslatableListener;

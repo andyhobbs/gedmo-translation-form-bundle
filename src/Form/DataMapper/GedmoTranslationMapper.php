@@ -10,9 +10,7 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 class GedmoTranslationMapper implements DataMapperInterface
 {
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public function mapDataToForms($data, $forms)
     {
         if (null === $data || [] === $data) {
@@ -36,9 +34,7 @@ class GedmoTranslationMapper implements DataMapperInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public function mapFormsToData($forms, &$data)
     {
         if (null === $data) {

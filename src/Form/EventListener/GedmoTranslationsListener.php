@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace A2lix\TranslationFormBundle\Form\EventListener;
 
-use Symfony\Component\Form\FormEvent,
-    Symfony\Component\Form\FormEvents,
-    Symfony\Component\EventDispatcher\EventSubscriberInterface,
-    A2lix\TranslationFormBundle\TranslationForm\TranslationForm;
+use A2lix\TranslationFormBundle\TranslationForm\TranslationForm;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 /**
  *
@@ -18,7 +18,6 @@ class GedmoTranslationsListener implements EventSubscriberInterface
     private $translationForm;
 
     /**
-     *
      * @param \A2lix\TranslationFormBundle\TranslationForm\TranslationForm $translationForm
      */
     public function __construct(TranslationForm $translationForm)
@@ -26,7 +25,8 @@ class GedmoTranslationsListener implements EventSubscriberInterface
         $this->translationForm = $translationForm;
     }
 
-    public static function getSubscribedEvents()
+    /** {@inheritdoc} */
+    public static function getSubscribedEvents(): array
     {
         return array(
             FormEvents::PRE_SET_DATA => 'preSetData',
@@ -34,7 +34,6 @@ class GedmoTranslationsListener implements EventSubscriberInterface
     }
 
     /**
-     *
      * @param \Symfony\Component\Form\FormEvent $event
      */
     public function preSetData(FormEvent $event)
@@ -48,10 +47,10 @@ class GedmoTranslationsListener implements EventSubscriberInterface
 
         foreach ($formOptions['locales'] as $locale) {
             if (isset($childrenOptions[$locale])) {
-                $form->add($locale, 'a2lix_translationsFields', array(
+                $form->add($locale, 'a2lix_translationsFields', [
                     'fields' => $childrenOptions[$locale],
                     'translation_class' => $this->translationForm->getTranslationClass($translatableClass),
-                ));
+                ]);
             }
         }
     }

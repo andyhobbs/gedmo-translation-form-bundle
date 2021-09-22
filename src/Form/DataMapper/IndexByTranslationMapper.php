@@ -10,12 +10,10 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 class IndexByTranslationMapper implements DataMapperInterface
 {
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public function mapDataToForms($data, $forms)
     {
-        if (null === $data || array() === $data) {
+        if (null === $data || [] === $data) {
             return;
         }
 
@@ -28,9 +26,7 @@ class IndexByTranslationMapper implements DataMapperInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public function mapFormsToData($forms, &$data)
     {
         if (null === $data) {
