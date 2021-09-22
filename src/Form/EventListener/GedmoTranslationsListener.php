@@ -9,6 +9,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
+/**
+ *
+ * @author David ALLIX
+ */
 class GedmoTranslationsListener implements EventSubscriberInterface
 {
     private $translationForm;
